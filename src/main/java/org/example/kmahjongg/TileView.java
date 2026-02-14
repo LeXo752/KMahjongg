@@ -9,6 +9,7 @@ public class TileView extends StackPane {
 
     // Wir speichern die logischen Koordinaten, damit wir später wissen, welcher Stein das ist
     public int x, y, z;
+    public String name;
 
     public TileView(int x, int y, int z, String text) {
         this.x = x;
@@ -26,6 +27,7 @@ public class TileView extends StackPane {
 
         // 2. Das Symbol (hier erst mal Text, später ein Bild)
         Text symbol = new Text(text);
+        name = symbol.toString();
         symbol.setStyle("-fx-font-size: 20px;");
 
         // Beides übereinander stapeln

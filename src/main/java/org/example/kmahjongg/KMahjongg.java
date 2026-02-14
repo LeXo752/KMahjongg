@@ -10,44 +10,67 @@ public class KMahjongg extends Application {
     public void start(Stage stage) throws Exception {
         Pane gameBoard = new Pane();
 
+        String[][][] tiles = TileGenerator.generateMap();
+
         double width = stage.getWidth();
         double height = stage.getHeight();
         double mapWidth = width * 0.625;
+        mapWidth = mapWidth - mapWidth%30;
         double mapHeight = height * 0.785;
-        mapWidth += (width-mapWidth)/2;
-        mapHeight += (height-mapHeight)/2;
-        //Für die map nehme ich 62,5 % x 78,5 % von der Fenster größe (Akkurat zu KMahjongg auf KDE)
+        mapHeight = mapHeight - mapHeight%16;
+        double xOffset = (width-mapWidth)/2;
+        double yOffset = (height-mapHeight)/2;
+        //Für die map nehmen wir 62,5 % x 78,5 % von der Fenster größe (Akkurat zu KMahjongg auf KDE)
 
 
-        // Konstanten für die Größe
-        int TILE_WIDTH = 50;
-        int TILE_HEIGHT = 70;
-        int OFFSET = 10; // Versatz für 3D-Effekt
+        int TILE_WIDTH = (int) (2*(mapWidth));
+        int TILE_HEIGHT = (int) (2*(mapHeight));;
+        int OFFSET = 10;
 
-        // Wir bauen einen kleinen Turm: 3 Steine übereinander
-        for (int z = 0; z < 3; z++) {
-            // Wir machen sie leicht versetzt, damit man es besser sieht
-            int x = 2;
-            int y = 2;
+        for (int z = 0; z < 5; z++) {
+            for (int y = 0; y<15;y+=2) {
+                for (int x = 0;x<29;x+=2) {
+                    if (tiles[x][y][z] == null) continue;
+                    TileView tile = new TileView(x, y, z, tiles[x][y][z]);
+                    double screenX = (x * TILE_WIDTH + (z * OFFSET) + x * 30)+350;
+                    double screenY = (y * TILE_HEIGHT - (z * OFFSET) + y * 30)+140;
+                    tile.setLayoutX(screenX);
+                    tile.setLayoutY(screenY);
 
-            TileView tile = new TileView(x, y, z, "Z:" + z);
-
-            // Die Magie: Berechnung der Bildschirmposition
-            // Je höher z, desto weiter nach rechts oben verschieben wir den Stein
-            double screenX = x * TILE_WIDTH + (z * OFFSET);
-            double screenY = y * TILE_HEIGHT - (z * OFFSET);
-
+                    tile.setOnMouseClicked(e -> {
+                        System.out.println("Stein angeklickt auf Ebene: " + tile.z);
+                        System.out.println(tile.x);
+                        System.out.println(tile.y);
+                        System.out.println(tile.name);
+                    });
+                    gameBoard.getChildren().add(tile);
+                }
+            }
+        }
+        for (int i = 1; i!=5;i++) {
+            int x = 0;
+            int y = 7;
+            int z = 0;
+            if (i == 2) {
+                x = 14;
+                z = 4;
+            } else if (i == 3) {
+                x = 26;
+            } else if (i == 4) {
+                x = 28;
+            }
+            TileView tile = new TileView(x, y, z, tiles[x][y][z]);
+            double screenX = (x * TILE_WIDTH + (z * OFFSET) + x * 30)+350;
+            double screenY = (y * TILE_HEIGHT - (z * OFFSET) + y * 30)+140;
             tile.setLayoutX(screenX);
             tile.setLayoutY(screenY);
 
-            // Klick-Event hinzufügen
             tile.setOnMouseClicked(e -> {
                 System.out.println("Stein angeklickt auf Ebene: " + tile.z);
-                // Hier später: Prüfen, ob Stein frei ist, dann entfernen
-                // gameBoard.getChildren().remove(tile);
+                System.out.println(tile.x);
+                System.out.println(tile.y);
+                System.out.println(tile.name);
             });
-
-            // WICHTIG: Zum Board hinzufügen
             gameBoard.getChildren().add(tile);
         }
 
