@@ -139,48 +139,48 @@ public class TileGenerator {
                 "G",
                 "G",
                 "G",
-                "W",
-                "W",
-                "W",
-                "W",
+                "WW",
+                "WW",
+                "WW",
+                "WW",
                 "J1",
                 "J2",
                 "J3",
                 "J4",
-                "B1",
-                "B2",
-                "B3",
-                "B4"));
+                "F1",
+                "F2",
+                "F3",
+                "F4"));
         Collections.shuffle(tiles);
-        for (int i = 2; i != 24;i+=2) {
+        for (int i = 2; i != 26;i+=2) {
             map[i][0][0] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 6; i != 20;i+=2) {
+        for (int i = 6; i != 22;i+=2) {
             map[i][2][0] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 4; i != 22;i+=2) {
+        for (int i = 4; i != 24;i+=2) {
             map[i][4][0] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 2; i != 24;i+=2) {
+        for (int i = 2; i != 26;i+=2) {
             map[i][6][0] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 2; i != 24;i+=2) {
+        for (int i = 2; i != 26;i+=2) {
             map[i][8][0] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 4; i != 22;i+=2) {
+        for (int i = 4; i != 24;i+=2) {
             map[i][10][0] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 6; i != 20;i+=2) {
+        for (int i = 6; i != 22;i+=2) {
             map[i][12][0] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 2; i != 24;i+=2) {
+        for (int i = 2; i != 26;i+=2) {
             map[i][14][0] = tiles.getLast();
             tiles.removeLast();
         }
@@ -190,51 +190,51 @@ public class TileGenerator {
         tiles.removeLast();
         map[28][7][0] = tiles.getLast();
         tiles.removeLast();
-        for (int i = 8; i != 18;i+=2) {
+        for (int i = 8; i != 20;i+=2) {
             map[i][2][1] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 8; i != 18;i+=2) {
+        for (int i = 8; i != 20;i+=2) {
             map[i][4][1] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 8; i != 18;i+=2) {
+        for (int i = 8; i != 20;i+=2) {
             map[i][6][1] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 8; i != 18;i+=2) {
+        for (int i = 8; i != 20;i+=2) {
             map[i][8][1] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 8; i != 18;i+=2) {
+        for (int i = 8; i != 20;i+=2) {
             map[i][10][1] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 8; i != 18;i+=2) {
+        for (int i = 8; i != 20;i+=2) {
             map[i][12][1] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 10; i != 16;i+=2) {
+        for (int i = 10; i != 18;i+=2) {
             map[i][4][2] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 10; i != 16;i+=2) {
+        for (int i = 10; i != 18;i+=2) {
             map[i][6][2] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 10; i != 16;i+=2) {
+        for (int i = 10; i != 18;i+=2) {
             map[i][8][2] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 10; i != 16;i+=2) {
+        for (int i = 10; i != 18;i+=2) {
             map[i][10][2] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 12; i != 14;i+=2) {
+        for (int i = 12; i != 16;i+=2) {
             map[i][6][3] = tiles.getLast();
             tiles.removeLast();
         }
-        for (int i = 12; i != 14;i+=2) {
+        for (int i = 12; i != 16;i+=2) {
             map[i][8][3] = tiles.getLast();
             tiles.removeLast();
         }
