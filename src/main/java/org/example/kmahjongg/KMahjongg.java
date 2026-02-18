@@ -105,39 +105,49 @@ public class KMahjongg extends Application {
         gameBoard.getChildren().add(tile);
     }
     public void setClickEvent(TileView tile) {
-//        System.out.println(tile.x);
-//        System.out.println(tile.y);
-//        System.out.println(tile.z);
         tile.setOnMouseClicked(e -> {
+            boolean valid = isValid(tile);
             if (selected != null && (tile == selected || !tile.name.equals(selected.name))) {
                 selected.base.changeBase(0);
                 selected = null;
-            } else {
-                if ((tile.name.equals(tiles[0][7][0]) || tile.name.equals(tiles[13][7][4]) || tile.name.equals(tiles[28][7][0])) || ((tiles[tile.x-2][tile.y][tile.z] == null && tiles[tile.x-2][tile.y+1][tile.z] == null || tiles[tile.x+2][tile.y][tile.z] == null && tiles[tile.x+2][tile.y+1][tile.z] == null) && (tiles[tile.x][tile.y][tile.z+1] == null))) {
-                    if (tile.z == 3 ) {
-                        if (tiles[tile.x+1][tile.y+1][tile.z+1] == null && tiles[tile.x-1][tile.y+1][tile.z+1] == null && tiles[tile.x+1][tile.y-1][tile.z+1] == null && tiles[tile.x-1][tile.y-1][tile.z+1] == null) {
-                            
-                        }
-                    }
-                    if (selected == null) {
-                        //Base Color Change
-                        tile.base.changeBase(1);
-                        selected = tile;
-                    } else {
-                        //Remove wenn alles passt
-                        tiles[tile.x][tile.y][tile.z] = null;
-                        tiles[selected.x][selected.y][selected.z] = null;
-                        gameBoard.getChildren().remove(tile);
-                        gameBoard.getChildren().remove(selected);
-                        selected = null;
-                    }
+            } else if (valid) {
+                if (selected == null) {
+                    //Base Color Change
+                    tile.base.changeBase(1);
+                    selected = tile;
                 } else {
-                    //Wenn kein match wieder normale Farbe
-                    assert selected != null;
-                    selected.base.changeBase(0);
+                    //Remove wenn alles passt
+                    tiles[tile.x][tile.y][tile.z] = null;
+                    tiles[selected.x][selected.y][selected.z] = null;
+                    gameBoard.getChildren().remove(tile);
+                    gameBoard.getChildren().remove(selected);
                     selected = null;
                 }
+            } else {
+                //Wenn kein match wieder normale Farbe
+                assert selected != null;
+                selected.base.changeBase(0);
+                selected = null;
             }
         });
+    }
+
+    private boolean isValid(TileView tile) {
+        boolean valid = false;
+        int x = tile.x;
+        int y = tile.y;
+        int z = tile.z;
+//            tiles[][][] == null
+        if (tile.name.equals(tiles[0][7][0]) || tile.name.equals(tiles[28][7][0]) || tile.name.equals(tiles[13][7][4])) { //Links rechts und Mitte Hardcoded
+            valid = true;
+        } else if ((y == 0 || y == 14) && tiles[x-2][y][z] == null || tiles[x+2][y][z] == null) { //Obere und untere Reihe Hardcoded
+            valid = true;
+        } else if ((tiles[tile.x-2][tile.y][tile.z] == null && tiles[tile.x-2][tile.y+1][tile.z] == null && tiles[tile.x-2][tile.y-1][tile.z] == null) || (tiles[tile.x+2][tile.y][tile.z] == null && tiles[tile.x+2][tile.y+1][tile.z] == null && tiles[tile.x+2][tile.y-1][tile.z] == null) && tiles[tile.x][tile.y][tile.z+1] == null) {
+            valid = true;
+        }
+        if (tile.z == 3 && tiles[13][7][4] != null) {
+            valid = false;
+        }
+        return valid;
     }
 }
