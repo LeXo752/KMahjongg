@@ -139,18 +139,18 @@ public class TileGenerator {
                 "G",
                 "G",
                 "G",
-                "WW",
-                "WW",
-                "WW",
-                "WW",
+                "",
+                "",
+                "",
+                "",
                 "J1",
-                "J2",
-                "J3",
-                "J4",
+                "J1",
+                "J1",
+                "J1",
                 "F1",
-                "F2",
-                "F3",
-                "F4"));
+                "F1",
+                "F1",
+                "F1"));
         Collections.shuffle(tiles);
         for (int i = 2; i != 26;i+=2) {
             map[i][0][0] = tiles.getLast();
@@ -241,8 +241,5 @@ public class TileGenerator {
         map[13][7][4] = tiles.getLast();
         tiles.removeLast();
         return map;
-    }
-    public TileGenerator() {
-
     }
 }

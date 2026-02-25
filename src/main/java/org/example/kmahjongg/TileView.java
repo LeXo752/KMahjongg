@@ -21,4 +21,8 @@ public class TileView extends StackPane {
 
         this.getChildren().addAll(base, symbol);
     }
+
+    public void baa() {
+
+    }
 }
